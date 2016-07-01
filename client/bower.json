@@ -1,0 +1,10 @@
+{
+    "name": "hi-to-hey",
+    "version": "1.0.0",
+    "dependencies": {
+        "jquery": "latest",
+        "angular": "latest",
+        "angular-socket-io": "latest",
+        "zInfiniteScroll": "latest"
+    }
+}

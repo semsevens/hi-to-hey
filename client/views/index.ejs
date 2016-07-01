@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="no-js" ng-app="hi-to-hey">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Hi To Hey</title>
+  <link rel="shortcut icon" href="../favicon.ico">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="fonts/vicons/vicons-font.css" />
+  <link rel="stylesheet" type="text/css" href="css/base.css" />
+  <link rel="stylesheet" type="text/css" href="css/chat.css" />
+  <link rel="stylesheet" type="text/css" href="css/cs-select.css" />
+  <link rel="stylesheet" type="text/css" href="css/cs-skin-elastic.css" />
+  <link rel="stylesheet" type="text/css" href="css/component.css" />
+  <link rel="stylesheet" type="text/css" href="css/set2.css" />
+
+  <script src="http://127.0.0.1:2016/socket.io/socket.io.js"></script>
+</head>
+
+<body ng-controller="MainCtrl" ng-init="usernameModal()">
+
+  <div class="md-modal md-effect-18 large-content" id="modal-18">
+    <div class="md-content">
+      <h3>Hi To Hey</h3>
+      <div class="center ">
+        <span class="input input--chisato">
+					<input class="input__field input__field--chisato" type="text" id="input-13" ng-model="user" ng-login />
+					<label class="input__label input__label--chisato" for="input-13">
+						<span class="input__label-content input__label-content--chisato" data-content="USERNAME">USERNAME</span>
+        </label>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="md-overlay"></div>
+  <!-- the overlay element -->
+
+  <div class="container">
+    <header class="codrops-header">
+      <h1>Hi, <a>{{username}}</a></h1>
+    </header>
+
+    <button class="md-trigger md-setperspective" ng-hide="true" data-modal="modal-18">Make way!</button>
+    <div class="content">
+
+      <div class="chat-window">
+        <div>
+          <select class="cs-select cs-skin-elastic">
+            <option value="" disabled selected> {{defaultRoom}}</option>
+            <option ng-repeat="r in rooms" value="{{r}}" on-finish-render="roomRepeatFinished">{{r}}</option>
+			   </select>
+        </div>
+        <div class="chat-messages" z-infinite-scroll="loadOlder" inverse="true">
+          <div class="center" ng-show="isLoading" style="margin-bottom: -40px;">
+            <img src="img/balls.svg">
+          </div>
+          <div class="center" ng-show="isNoMoreMessage" style="margin-bottom: -40px;">
+            <h1>No More Message</h1>
+          </div>
+          <ol class="chat-messages-list">
+            <li ng-repeat="m in messages" class="chat-message" ng-class="(m.username == username) ? 'chat-message-self' : 'chat-message-friend'" on-finish-render="messageRepeatFinished">
+              <div class="chat-message-bubble">
+                <div ng-if="m.username != username">
+                  <div class="my-message-info"> {{m.username}}：</div>
+                </div>
+                {{m.content}}
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <div class="chat-input-bar">
+          <div class="chat-info-container"></div>
+          <div class="chat-effect-container">
+            <div class="chat-effect-bar"></div>
+          </div>
+          <div class="chat-input-wrapper">
+            <button class="chat-input-tool">
+								<i class="icon icon-camera"></i>
+							</button>
+            <div contenteditable class="chat-input" ng-enter="send(message)"></div>
+            <button class="chat-send">
+								<i class="fa fa-paper-plane"></i>
+							</button>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /chat-window -->
+    </div>
+    <!-- /content -->
+  </div>
+  <!-- /container -->
+
+  <script src="js/modalEffects.js"></script>
+  <script src="js/classie.js"></script>
+  <script src="js/selectFx.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="libs/angular/angular.js"></script>
+  <script src="libs/zInfiniteScroll/zInfiniteScroll.js"></script>
+  <script src="libs/angular-socket-io/socket.js"></script>
+  <script src="js/TweenMax.min.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/index.js"></script>
+  <!-- for the blur effect -->
+  <!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+  <script>
+    // this is important for IEs
+    var polyfilter_scriptpath = '/js/';
+  </script>
+
+  <script>
+    (function() {
+      // trim polyfill : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/Trim
+      if (!String.prototype.trim) {
+        (function() {
+          // Make sure we trim BOM and NBSP
+          var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+          String.prototype.trim = function() {
+            return this.replace(rtrim, '');
+          };
+        })();
+      }
+
+      [].slice.call(document.querySelectorAll('input.input__field')).forEach(function(inputEl) {
+        // in case the input is already filled..
+        if (inputEl.value.trim() !== '') {
+          classie.add(inputEl.parentNode, 'input--filled');
+        }
+
+        // events:
+        inputEl.addEventListener('focus', onInputFocus);
+        inputEl.addEventListener('blur', onInputBlur);
+      });
+
+      function onInputFocus(ev) {
+        classie.add(ev.target.parentNode, 'input--filled');
+      }
+
+      function onInputBlur(ev) {
+        if (ev.target.value.trim() === '') {
+          classie.remove(ev.target.parentNode, 'input--filled');
+        }
+      }
+    })();
+  </script>
+</body>
+
+</html>

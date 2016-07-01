@@ -1,0 +1,30 @@
+{
+    "name": "hi-to-hey(client)",
+    "version": "1.0.0",
+    "description": "a realtime chat web application",
+    "main": "client.js",
+    "dependencies": {
+        "body-parser": "latest",
+        "cookie-parser": "latest",
+        "ejs": "latest",
+        "express": "latest"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "start": "node client.js"
+    },
+    "author": {
+        "name": "semsevens",
+        "email": "semsevens@gmail.com",
+        "url": "http://semsevens.com/"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/semsevens/hi-to-hey.git/client"
+    },
+    "keywords": [
+        "chat",
+        "socket"
+    ]
+}
