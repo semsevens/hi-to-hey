@@ -24,6 +24,7 @@ If your server is not running at it, you should change the config in two files.
   ``` html
   <script src="http://[your server address]/socket.io/socket.io.js"></script>
   ```
+
 2. in `public/js/index.js`, change
 
   ``` javascrip
