@@ -13,7 +13,7 @@ bower install
 Second, make sure the server is running.  
 By default, the server is running at `127.0.0.1:2016`.  
 If your server is not running at it, you should change the config in two files.  
-1. in `views/index.ejs`, change
+* in `views/index.ejs`, change
 
   ``` html
   <script src="http://127.0.0.1:2016/socket.io/socket.io.js"></script>
@@ -25,7 +25,7 @@ If your server is not running at it, you should change the config in two files.
   <script src="http://[your server address]/socket.io/socket.io.js"></script>
   ```
 
-2. in `public/js/index.js`, change
+* in `public/js/index.js`, change
 
   ``` javascrip
   var serverBaseUrl = 'http://127.0.0.1:2016';
