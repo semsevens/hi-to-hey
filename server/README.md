@@ -30,7 +30,7 @@ Finally, visit `http:://127.0.0.1:2016/setup` to setup for the first time.
 This is important.
 
 ## Notice
-To tun the server, make sure you have install [Node.js](https://nodejs.org/).
+To run the server, make sure you have install [Node.js](https://nodejs.org/).
 
 ## License
 Copyright (C) 2016 semsevens.

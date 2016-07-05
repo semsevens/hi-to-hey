@@ -50,7 +50,7 @@ Now, you can visit the client at `http://127.0.0.1:4000`.
 Just chat for fun.
 
 ## Notice
-To tun the client, make sure you have install [Node.js](https://nodejs.org/) and [bower](https://bower.io/).
+To run the client, make sure you have install [Node.js](https://nodejs.org/) and [Bower](https://bower.io/).
 
 ## License
 Copyright (C) 2016 semsevens.
