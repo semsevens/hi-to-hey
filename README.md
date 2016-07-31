@@ -26,7 +26,7 @@ Hi To Hey is a realtime chat web application.
 Just go to `client` and `server` folders for more details.
 
 ## Demo
-Visit [Hi To Hey](http://semsevens.com:9797) for a overview.
+Visit [Hi To Hey](https://hi.semsevens.com) for a overview.
 
 ## License
 Copyright (C) 2016 semsevens.
